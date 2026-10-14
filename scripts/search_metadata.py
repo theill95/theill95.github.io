@@ -40,6 +40,7 @@ for da in [False,True]:
   tags=''.join(f'<link rel="alternate" hreflang="{l}" href="{u}">' for l,u in [('en',url(page)),('da',url(page,True)),('x-default',url(page))])
   tags+=''.join(f'<meta property="{k}" content="{html.escape(v,quote=True)}">' for k,v in [('og:title',title),('og:description',desc),('og:url',canonical),('og:type','profile' if i==0 else 'website'),('og:site_name',NAME),('og:locale','da_DK' if da else 'en_GB'),('og:image',BASE+'assets/portrait.webp'),('og:image:alt',NAME)])
   tags+='<meta name="author" content="'+NAME+'"><script type="application/ld+json">'+json.dumps(graph,ensure_ascii=False,separators=(',',':'))+'</script>'
+  if i==0 and not da: tags+='<meta name="google-site-verification" content="KZgp9xiqheJSgJF8KJWpEldENGhJqtCgquZCEW12Je4" />'
   s=s.replace('</head>','<!-- search-metadata -->'+tags+'<!-- /search-metadata --></head>')
   for old,new in [('href="index.html"','href="./"'),('href="../index.html"','href="../"'),('href="da/index.html"','href="da/"')]:s=s.replace(old,new)
   path.write_text(s,encoding='utf-8')

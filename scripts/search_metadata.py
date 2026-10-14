@@ -26,6 +26,7 @@ for da in [False,True]:
   s=path.read_text(encoding='utf-8')
   label=(['Forside','Forskning','Undervisning','CV'] if da else ['Home','Research','Teaching','CV'])[i]
   title=(NAME+' | '+('Finansiel forskning, Aarhus Universitet' if da else 'Finance Researcher, Aarhus University')) if i==0 else label+' | '+NAME
+  if i==3: title+=' | '+('Aarhus Universitet' if da else 'Aarhus University')
   desc=descs[lang][i]; canonical=url(page,da)
   s=re.sub(r'<title>.*?</title>','<title>'+html.escape(title)+'</title>',s)
   for key,value in [('description',desc)]:
